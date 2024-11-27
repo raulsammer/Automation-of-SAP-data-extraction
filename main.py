@@ -42,13 +42,15 @@ def run_sap_script():
     session.findById("wnd[0]/usr/ctxtDATUV").text = ""
     session.findById("wnd[0]/usr/ctxtDATUB").text = ""
     session.findById("wnd[0]/usr/chkDY_HIS").setFocus
-    session.findById("wnd[0]/tbar[1]/btn[8]").press
-    session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").currentCellColumn = "AUFNR"
+    session.findById("wnd[0]/tbar[1]/btn[8]").press()
+    session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectColumn("AUFNR")
+    session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").firstVisibleRow = 2
+    #session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").currentCellColumn = "AUFNR"
     session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").doubleClickCurrentCell
+    
 
 if __name__ == '__main__':
     run_sap_script()
-
 
 if __name__ == '__main__':
     main()
