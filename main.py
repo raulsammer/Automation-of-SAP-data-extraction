@@ -34,7 +34,7 @@ def run_sap_script():
     connection = application.Children(0)  # Suponiendo que ya hay una conexión activa
     session = connection.Children(0)  # Suponiendo que es la primera sesión abierta
     session.findById("wnd[0]").maximize
-    session.findById("wnd[0]/tbar[0]/okcd").text = "iw39"
+    """session.findById("wnd[0]/tbar[0]/okcd").text = "iw39"
     session.findById("wnd[0]").sendVKey(0)
     session.findById("wnd[0]/usr/chkDY_MAB").selected = True 
     session.findById("wnd[0]/usr/chkDY_HIS").selected = True 
@@ -42,12 +42,13 @@ def run_sap_script():
     session.findById("wnd[0]/usr/ctxtDATUV").text = ""
     session.findById("wnd[0]/usr/ctxtDATUB").text = ""
     session.findById("wnd[0]/usr/chkDY_HIS").setFocus
-    session.findById("wnd[0]/tbar[1]/btn[8]").press()
-    session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectColumn("AUFNR")
-    session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").firstVisibleRow = 2
+    session.findById("wnd[0]/tbar[1]/btn[8]").press()"""
+    #session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectColumn("AUFNR")
+    #session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").firstVisibleRow = 100
     #session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").currentCellColumn = "AUFNR"
-    session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").doubleClickCurrentCell
-    
+    session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").setCurrentCell(6,"AUFNR")
+    session.findById("wnd[0]/tbar[1]/btn[37]").press()
+
 
 if __name__ == '__main__':
     run_sap_script()
