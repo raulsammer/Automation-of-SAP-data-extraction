@@ -1,4 +1,3 @@
-#pip install pywin32
 import win32com.client
 
 def get_client():
@@ -16,25 +15,20 @@ def get_client():
 
         for sess in range(connection.Children.Count):
             session = connection.Children(sess)
-
-            # Check if the session is at the main screen 'SESSION_MANAGER'
             if session.Info.Transaction == 'SESSION_MANAGER':
                 return session
     return None
 
 def main():
-    # Initialize an object to store the SAP session
     session = get_client()
-
-import win32com.client
-
 def run_sap_script():
     SapGuiAuto = win32com.client.GetObject('SAPGUI')
     application = SapGuiAuto.GetScriptingEngine
-    connection = application.Children(0)  # Suponiendo que ya hay una conexión activa
-    session = connection.Children(0)  # Suponiendo que es la primera sesión abierta
+    connection = application.Children(0) 
+    session = connection.Children(0) 
     session.findById("wnd[0]").maximize
-    """session.findById("wnd[0]/tbar[0]/okcd").text = "iw39"
+    """
+    session.findById("wnd[0]/tbar[0]/okcd").text = "iw39"
     session.findById("wnd[0]").sendVKey(0)
     session.findById("wnd[0]/usr/chkDY_MAB").selected = True 
     session.findById("wnd[0]/usr/chkDY_HIS").selected = True 
@@ -46,12 +40,15 @@ def run_sap_script():
     #session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectColumn("AUFNR")
     #session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").firstVisibleRow = 100
     #session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").currentCellColumn = "AUFNR"
-    session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").setCurrentCell(6,"AUFNR")
+    session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").setCurrentCell(7595,"AUFNR")
     session.findById("wnd[0]/tbar[1]/btn[37]").press()
-
+    session.findById("wnd[0]/titl/shellcont/shell").pressContextButton("%GOS_TOOLBOX")
+    session.findById("wnd[1]/usr/tblSAPLSWUGOBJECT_CONTROL").getAbsoluteRow(0).selected = True
+    session.findById("wnd[1]/tbar[0]/btn[0]").press()
+    session.findById("wnd[0]/titl/shellcont/shell").selectContextMenuItem("%GOS_VIEW_ATTA")
+    
 
 if __name__ == '__main__':
     run_sap_script()
-
 if __name__ == '__main__':
     main()
